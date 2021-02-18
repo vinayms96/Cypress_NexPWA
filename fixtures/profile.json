@@ -1,0 +1,19 @@
+{
+  "id": 8739,
+  "first_name": "Vinay",
+  "last_name": "M S",
+  "email": "vinay@codilar.com",
+  "password": "Asdf@1234",
+  "additional_phone": 6360413814,
+  "address": {
+      "street": "31",
+      "country": "IN",
+      "state": "Karnataka",
+      "city": "Bengaluru",
+      "postal_code": 560021,
+      "phone_number": 9941231212,
+      "company": "",
+      "is_default_billing": 0,
+      "is_default_shipping": 0
+  }
+}
