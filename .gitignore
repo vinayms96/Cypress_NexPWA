@@ -104,6 +104,6 @@ dist
 .tern-port
 
 #Cypress Neglect
-screenshot/
+screenshots/
 videos/
 Samples.zip

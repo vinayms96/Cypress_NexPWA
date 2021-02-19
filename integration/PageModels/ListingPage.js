@@ -17,12 +17,12 @@ export default class ListingPage {
         return cy.get('p[itemprop=name]')
     }
 
-    get_product_name() {
-        return 
-    }
-
     get_filter_list() {
         return cy.get('.ProductConfigurableAttributes article')
+    }
+
+    get_sort_dropdown() {
+        return cy.get('.CategorySort select')
     }
 
     check_filter($ele) {
