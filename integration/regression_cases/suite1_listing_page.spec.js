@@ -22,9 +22,9 @@ describe('Test Listing Page Functionality', () => {
 
         // Navigate to the listing page and verify
         cy.get('span').contains('Men').click()
-        cy.intercept('GET','**/*.html', (resp) => {
+        cy.intercept('GET', '**/*.html', (resp) => {
             cy.log('reloaded')
-            if(resp.statusCode == 404){cy.reload()}
+            if (resp.statusCode == 404) { cy.reload() }
         })
         cy.url().should('include', '/men.html')
         cy.title().should('eq', 'NexPWA | Men')
@@ -76,7 +76,7 @@ describe('Test Listing Page Functionality', () => {
             listingPage.get_swatch_filters($list).find('a').then($value => {
                 cy.wrap($value[0]).click()
                 validate_count()
-                
+
                 cy.wait(1000)
                 fetch_product_names_prices()
             })
@@ -86,40 +86,40 @@ describe('Test Listing Page Functionality', () => {
     /**
      * Apply filters and count the number of products displayed with count
      */
-    /*    var product_count
-        it('Validate the product count', () => {
-            // Verify the number of products displayed with the count
-            listingPage.get_pagination_ele().scrollIntoView()
-            cy.wait(6000)
-            listingPage.get_product_card_list()
-                .then($list => {
-                    product_count = $list.length
-                    listingPage.get_product_item_count().invoke('text').should('include', product_count)
-                })
-        }); */
+    var product_count
+    it('Validate the product count', () => {
+        // Verify the number of products displayed with the count
+        listingPage.get_pagination_ele().scrollIntoView()
+        cy.wait(6000)
+        listingPage.get_product_card_list()
+            .then($list => {
+                product_count = $list.length
+                listingPage.get_product_item_count().invoke('text').should('include', product_count)
+            })
+    });
 
     /**
      * Apply filters and verify the product_count
      */
-    /*    it('Applying filters and verifying the results', () => {
-            cy.scrollTo('top')
-            cy.wait(2000)
-    
-            // Apply first filter
-            listingPage.get_filter_list().then($list => {
-                listingPage.get_swatch_filters($list).find('a').then($value => {
-                    cy.wrap($value[0]).click()
-                    validate_count()
-                    listingPage.click_reset_filter()
-                })
-                listingPage.get_swatch_dropdownList($list).find('input').then($value => {
-                    cy.wrap($value[0]).check({ force: true })
-                    validate_count()
-                    listingPage.click_reset_filter()
-                })
+    it('Applying filters and verifying the results', () => {
+        cy.scrollTo('top')
+        cy.wait(2000)
+
+        // Apply first filter
+        listingPage.get_filter_list().then($list => {
+            listingPage.get_swatch_filters($list).find('a').then($value => {
+                cy.wrap($value[0]).click()
+                validate_count()
+                listingPage.click_reset_filter()
+            })
+            listingPage.get_swatch_dropdownList($list).find('input').then($value => {
+                cy.wrap($value[0]).check({ force: true })
+                validate_count()
+                listingPage.click_reset_filter()
             })
         })
-    */
+    })
+
 
     var convert_price = function (array) {
         let newArr = []
@@ -132,7 +132,7 @@ describe('Test Listing Page Functionality', () => {
     /**
      * Applying the Name sorting and verifying the sort feature
      */
-   it('Verify the Name Sorting', () => {
+    it('Verify the Name Sorting', () => {
         // Apply filters
         apply_filters()
 
@@ -181,7 +181,7 @@ describe('Test Listing Page Functionality', () => {
         fetch_sorted_product_prices()
         cy.get('div').should(_$data => {
             expect(convert_price(list_prod_prices).sort(function (a, b) { return a - b })).to.deep
-            .equal(convert_price(list_sorted_prices))
+                .equal(convert_price(list_sorted_prices))
         })
 
         // Apply the Price High to Low sort
@@ -196,7 +196,7 @@ describe('Test Listing Page Functionality', () => {
         fetch_sorted_product_prices()
         cy.get('div').should(_$data => {
             expect(convert_price(list_prod_prices).sort(function (a, b) { return b - a })).to.deep
-            .equal(convert_price(list_sorted_prices))
+                .equal(convert_price(list_sorted_prices))
         })
     });
 })
