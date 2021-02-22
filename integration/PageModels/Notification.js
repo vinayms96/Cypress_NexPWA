@@ -8,4 +8,8 @@ export default class Notification {
     success_msg_ele() {
         return cy.get('.Notification_type_success').find('p')
     }
+
+    close_success_msg_ele() {
+        return cy.get('.Notification_type_success').find('button').click()
+    }
 }

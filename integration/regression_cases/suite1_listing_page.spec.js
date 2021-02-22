@@ -22,7 +22,7 @@ describe('Test Listing Page Functionality', () => {
 
         // Navigate to the listing page and verify
         cy.get('span').contains('Men').click()
-        cy.intercept('GET', '**/*.html', (resp) => {
+        cy.intercept('GET', '/men.html', (resp) => {
             cy.log('reloaded')
             if (resp.statusCode == 404) { cy.reload() }
         })
@@ -39,6 +39,7 @@ describe('Test Listing Page Functionality', () => {
                 product_count = $list.length
                 listingPage.get_product_item_count().invoke('text').should('include', product_count)
             })
+        cy.wait(500)
     }
 
     var fetch_product_names_prices = function () {
@@ -86,8 +87,7 @@ describe('Test Listing Page Functionality', () => {
     /**
      * Apply filters and count the number of products displayed with count
      */
-    var product_count
-    it('Validate the product count', () => {
+   /*  it('Validate the product count', () => {
         // Verify the number of products displayed with the count
         listingPage.get_pagination_ele().scrollIntoView()
         cy.wait(6000)
@@ -96,7 +96,7 @@ describe('Test Listing Page Functionality', () => {
                 product_count = $list.length
                 listingPage.get_product_item_count().invoke('text').should('include', product_count)
             })
-    });
+    }); */
 
     /**
      * Apply filters and verify the product_count

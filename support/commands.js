@@ -25,12 +25,12 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 import Loginpage from "../integration/PageModels/LoginPage"
-import CheckoutPage from "../integration/PageModels/CheckoutPage"
 import Notification from "../integration/PageModels/Notification"
 import Header from "../integration/PageModels/Header"
 
 Cypress.Commands.add("login", (email, password) => {
     var loginPage = new Loginpage
+    var notification = new Notification
 
     loginPage.set_email_field(email)
     loginPage.click_verify()
@@ -39,6 +39,7 @@ Cypress.Commands.add("login", (email, password) => {
 
     cy.get('h1').should('have.text','Dashboard')
     cy.url().should('include','/my-account/dashboard')
+    notification.success_msg_ele().should('have.text','You are successfully logged in!')
 })
 
 Cypress.Commands.add("check_login", (email, password) => {
