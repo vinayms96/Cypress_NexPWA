@@ -42,6 +42,7 @@ describe('Test Listing Page Functionality', () => {
         cy.wait(500)
     }
 
+    // Fetch the Original Product names and prices
     var fetch_product_names_prices = function () {
         list_prod_names = []
         list_prod_prices = []
@@ -55,6 +56,7 @@ describe('Test Listing Page Functionality', () => {
             })
     }
 
+    // Fetch the Sorted Product Names
     var fetch_sorted_product_names = function () {
         list_sorted_names = []
         listingPage.get_product_card_list().find('p[itemprop=name]')
@@ -63,6 +65,7 @@ describe('Test Listing Page Functionality', () => {
             })
     }
 
+    // Fetch the Sorted Prices
     var fetch_sorted_product_prices = function () {
         list_sorted_prices = []
         listingPage.get_product_card_list().find('span[itemprop="lowPrice"]')
@@ -71,8 +74,8 @@ describe('Test Listing Page Functionality', () => {
             })
     }
 
+    // Apply filter
     var apply_filters = function () {
-        // Apply first filter
         listingPage.get_filter_list().then($list => {
             listingPage.get_swatch_filters($list).find('a').then($value => {
                 cy.wrap($value[0]).click()
@@ -82,6 +85,15 @@ describe('Test Listing Page Functionality', () => {
                 fetch_product_names_prices()
             })
         })
+    }
+
+    // Convert the Price in String to Integer
+    var convert_price = function (array) {
+        let newArr = []
+        array.forEach(($value, index) => {
+            newArr[index] = Number($value.replace(/[^0-9.-]+/g, ""))
+        })
+        return newArr
     }
 
     /**
@@ -119,15 +131,6 @@ describe('Test Listing Page Functionality', () => {
             })
         })
     })
-
-
-    var convert_price = function (array) {
-        let newArr = []
-        array.forEach(($value, index) => {
-            newArr[index] = Number($value.replace(/[^0-9.-]+/g, ""))
-        })
-        return newArr
-    }
 
     /**
      * Applying the Name sorting and verifying the sort feature

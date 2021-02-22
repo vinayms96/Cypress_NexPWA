@@ -34,7 +34,7 @@ describe('Test Login Feature', () => {
     });    
 
     // Checking both Email and Password fields
-    it('Both Field Validations', () => {
+    it('Email and Password Field Validations', () => {
         loginPage.click_signin()
 
         loginPage.get_email_field().next('p').should('have.text','This field is required!')
