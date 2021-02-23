@@ -2,7 +2,7 @@
 
 export default class ListingPage {
     get_product_card_list() {
-        return cy.get('.CategoryProductList li')
+        return cy.get('.CategoryProductList ul').children()
     }
 
     get_pagination_ele() {

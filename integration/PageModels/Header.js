@@ -17,6 +17,22 @@ export default class Header {
         return cy.get('.Footer-rowone a')
     }
 
+    get_list_of_suggestion() {
+        return cy.get('.SearchOverlay-Results ul').children()
+    }
+
+    set_searchBar_suggestion(search_text) {
+        cy.get('#search-field').clear().type(search_text).wait(1000)
+    }
+
+    set_searchBar(search_text) {
+        cy.get('#search-field').clear().type(search_text+'{enter}')
+    }
+
+    get_searchBar() {
+        return cy.get('#search-field')
+    }
+
     click_account_btn() {
         cy.get('.Header-Button.Header-Button_type_account').click()
     }
