@@ -25,6 +25,10 @@ export default class ProductPage {
         cy.get('.ProductActions-AddToCart').click()
     }
 
+    get_wishlist_icon() {
+        return cy.get('.ProductActions-AdditionalButtons')
+    }
+
     get_product_name() {
         return cy.get('.ProductActions-Section > h1[itemprop=name]')
     }

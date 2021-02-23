@@ -2,18 +2,25 @@
 
 import ListingPage from "../PageModels/ListingPage"
 import ProductPage from "../PageModels/ProductPage"
+import Notification from "../PageModels/Notification"
+import Header from "../PageModels/Header"
 
 describe('Test Product Page Functionality', () => {
-    let listingPage, productPage
-    let site
+    let listingPage, productPage, notification, header
+    let site, user
 
     before(() => {
         listingPage = new ListingPage
         productPage = new ProductPage
+        notification = new Notification
+        header = new Header
 
         // Fetch the url from JSON file
         cy.fixture('site_details').then($data => {
             site = $data
+        })
+        cy.fixture('profile').then($data => {
+            user = $data
         })
     })
 
@@ -63,6 +70,67 @@ describe('Test Product Page Functionality', () => {
         productPage.get_product_highPrice().then($highPrice => {
             expect($highPrice.text()).to.be.equal(listing_product_highPrice)
         })
+    });
+
+    /**
+     * Adding product to Wishlist as Guest User
+     */
+    it('Add product to Wishlist as Guest', () => {
+        // Clicking on the product card
+        cy.wait(2000)
+        listingPage.get_product_card_list()
+        .then($prods => {
+            var randomNum = Math.floor(Math.random() * 8)
+            cy.wrap($prods[randomNum]).scrollIntoView($prods[randomNum]).wait(1000).click()
+        })
+
+        productPage.get_wishlist_icon().children('button').first().then($ele => {
+            cy.wrap($ele).invoke('attr','class').should('include','disabled')
+        })
+        productPage.get_wishlist_icon().children('button').first().click()
+
+        notification.error_msg_ele().should('have.text','Please login to add to whishlist')
+    });
+
+    /**
+     * Adding product to Wishlist as Logged in User
+     */
+    it('Add product to Wishlsit as Logged in User', () => {
+        // Clicking on the product card
+        cy.wait(2000)
+        listingPage.get_product_card_list()
+        .then($prods => {
+            var randomNum = Math.floor(Math.random() * 8)
+            cy.wrap($prods[randomNum]).scrollIntoView($prods[randomNum]).wait(1000).click()
+        })
+
+        // Logging in to the User Account
+        header.click_account_btn()
+        cy.get('.Overlay_isVisible').find('strong').should('have.text','Sign in to your account')
+        cy.login(user.email, user.password)
+
+        // Navigate to previous page
+        cy.go('back')
+
+        // Adding the product to Wishlist and verifying
+        cy.wait(500)
+        productPage.get_wishlist_icon().children('button').first().then($ele => {
+            cy.wrap($ele).invoke('attr','class').should('not.include','disabled')
+            cy.wrap($ele).invoke('attr','title').then($title => {expect($title).to.be.equal('Add to Wishlist')})
+        })
+        productPage.get_wishlist_icon().children('button').first().click()
+
+        cy.wait(4000)
+        notification.success_msg_ele().should('have.text','Product has been added to your Wish List!')
+
+        // Removing the product from Wishlist and verifying
+        productPage.get_wishlist_icon().children('button').first().then($ele => {
+            cy.wrap($ele).invoke('attr','class').should('not.include','disabled')
+            cy.wrap($ele).invoke('attr','title').then($title => {expect($title).to.be.equal('Remove from Wishlist')})
+        })
+        productPage.get_wishlist_icon().children('button').first().click()
+        cy.wait(2000)
+        notification.success_msg_ele().should('have.text','Product has been removed from your Wish List!')
     });
 
     /**
