@@ -24,9 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import Loginpage from "../integration/PageModels/LoginPage"
-import Notification from "../integration/PageModels/Notification"
-import Header from "../integration/PageModels/Header"
+import Loginpage from "./PageModels/LoginPage"
+import Notification from "./PageModels/Notification"
+import Header from "./PageModels/Header"
 
 Cypress.Commands.add("login", (email, password) => {
     var loginPage = new Loginpage

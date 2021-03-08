@@ -1,9 +1,9 @@
 /// <reference types="Cypress"/>
 
-import ForgotPassword from "../PageModels/ForgotPassword";
-import Header from "../PageModels/Header";
-import Notification from '../PageModels/Notification';
-import LoginPage from "../PageModels/LoginPage";
+import ForgotPassword from "../../support/PageModels/ForgotPassword";
+import Header from "../../support/PageModels/Header";
+import Notification from '../../support/PageModels/Notification';
+import LoginPage from "../../support/PageModels/LoginPage";
 
 describe('Test Login Feature', () => {
     let loginPage, forgotPassword, header, notification

@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
 
-import ListingPage from "../PageModels/ListingPage"
-import ProductPage from "../PageModels/ProductPage"
-import Notification from "../PageModels/Notification"
-import Header from "../PageModels/Header"
+import ListingPage from "../../support/PageModels/ListingPage"
+import ProductPage from "../../support/PageModels/ProductPage"
+import Notification from "../../support/PageModels/Notification"
+import Header from "../../support/PageModels/Header"
 
 describe('Test Product Page Functionality', () => {
     let listingPage, productPage, notification, header

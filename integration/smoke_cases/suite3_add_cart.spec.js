@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 
-import ListingPage from "../PageModels/ListingPage"
-import Notification from "../PageModels/Notification"
-import ProductPage from "../PageModels/ProductPage"
-import Header from "../PageModels/Header"
-import SearchListingpage from "../PageModels/SearchListingpage"
+import ListingPage from "../../support/PageModels/ListingPage"
+import Notification from "../../support/PageModels/Notification"
+import ProductPage from "../../support/PageModels/ProductPage"
+import Header from "../../support/PageModels/Header"
+import SearchListingpage from "../../support/PageModels/SearchListingpage"
 
 describe('Add to cart from different pages', () => {
     let productPage, notification, header, searchListing, listingPage
