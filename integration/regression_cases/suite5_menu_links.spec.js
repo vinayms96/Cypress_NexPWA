@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import Header from "../PageModels/Header"
+import Header from "../../support/PageModels/Header"
 
 describe('Test the Website Links', () => {
     let header

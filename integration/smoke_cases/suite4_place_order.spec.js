@@ -1,12 +1,12 @@
 /// <reference types="Cypress"/>
 
-import ListingPage from "../PageModels/ListingPage"
-import ProductPage from "../PageModels/ProductPage"
-import Notification from "../PageModels/Notification"
-import Header from "../PageModels/Header"
-import Minicart from "../PageModels/Minicart"
-import CheckoutPage from "../PageModels/CheckoutPage"
-import OrderSuccess from "../PageModels/OrderSuccess"
+import ListingPage from "../../support/PageModels/ListingPage"
+import ProductPage from "../../support/PageModels/ProductPage"
+import Notification from "../../support/PageModels/Notification"
+import Header from "../../support/PageModels/Header"
+import Minicart from "../../support/PageModels/Minicart"
+import CheckoutPage from "../../support/PageModels/CheckoutPage"
+import OrderSuccess from "../../support/PageModels/OrderSuccess"
 
 describe('Place Order Flow', () => {
     let listingPage, productPage, notification, header, minicart, checkoutPage, orderSuccess

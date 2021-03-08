@@ -1,6 +1,6 @@
 /// <reference types="Cypress"/>
 
-import ListingPage from '../PageModels/ListingPage'
+import ListingPage from '../../support/PageModels/ListingPage'
 
 describe('Test Listing Page Functionality', () => {
     let listingPage

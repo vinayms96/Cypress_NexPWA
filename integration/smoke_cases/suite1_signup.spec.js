@@ -1,9 +1,9 @@
 /// <reference types="Cypress" />
 
-import Header from "../PageModels/Header";
-import LoginPage from "../PageModels/LoginPage";
-import SignupPage from "../PageModels/SignupPage";
-import Notification from "../PageModels/Notification"
+import Header from "../../support/PageModels/Header";
+import LoginPage from "../../support/PageModels/LoginPage";
+import SignupPage from "../../support/PageModels/SignupPage";
+import Notification from "../../support/PageModels/Notification"
 
 describe('Test Signup Feature',() => {
     let loginPage, signupPage, header, notification
